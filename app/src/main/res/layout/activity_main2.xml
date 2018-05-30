@@ -1,0 +1,29 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zhy.stickynavlayout.PageSwitchLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/bg_room"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:orientation="vertical">
+            <com.zhy.stickynavlayout.view.LiveVideoLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/container_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.zhy.stickynavlayout.PageSwitchLayout>
+</android.support.design.widget.CoordinatorLayout>
