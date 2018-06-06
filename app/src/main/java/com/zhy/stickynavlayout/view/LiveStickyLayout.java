@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
@@ -23,6 +24,9 @@ import com.zhy.stickynavlayout.R;
  */
 public class LiveStickyLayout extends LinearLayout implements NestedScrollingParent {
     private static final String TAG = "LiveStickyLayout";
+    private float xDistance, yDistance;
+    private float xLast, yLast;
+    private boolean isEnbaleScroll = false;
 
     @Override
     public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
@@ -56,6 +60,7 @@ public class LiveStickyLayout extends LinearLayout implements NestedScrollingPar
             consumed[1] = dy;
         }
         if (scrollChangeListener != null && showTop) {
+            isEnbaleScroll = false;
             scrollChangeListener.enableScroll(true);
         }
     }
@@ -189,7 +194,7 @@ public class LiveStickyLayout extends LinearLayout implements NestedScrollingPar
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         getChildAt(0).measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
         ViewGroup.LayoutParams params = mViewPager.getLayoutParams();
-        params.height = Resources.getSystem().getDisplayMetrics().heightPixels - mNav.getMeasuredHeight();
+        params.height = getMeasuredHeight() - mNav.getMeasuredHeight();
         setMeasuredDimension(getMeasuredWidth(), mTop.getMeasuredHeight() + mNav.getMeasuredHeight() + mViewPager.getMeasuredHeight());
 
     }
@@ -204,6 +209,37 @@ public class LiveStickyLayout extends LinearLayout implements NestedScrollingPar
     public void fling(int velocityY) {
         mScroller.fling(0, getScrollY(), 0, velocityY, 0, 0, 0, mTopViewHeight);
         invalidate();
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                xDistance = yDistance = 0f;
+                xLast = ev.getX();
+                yLast = ev.getY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                final float curX = ev.getX();
+                final float curY = ev.getY();
+
+                xDistance += Math.abs(curX - xLast);
+                yDistance += Math.abs(curY - yLast);
+                xLast = curX;
+                yLast = curY;
+                Log.e(TAG, "xDistance > yDistance   " + (xDistance > yDistance));
+                if (xDistance > yDistance) {
+                    return false;
+                }
+                return isEnbaleScroll;
+            default:
+                return super.onInterceptTouchEvent(ev);
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
+
+    public void setEnbaleScroll(boolean enbaleScroll) {
+        isEnbaleScroll = enbaleScroll;
     }
 
     @Override

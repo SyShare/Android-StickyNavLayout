@@ -59,6 +59,16 @@ public class TabFragment extends Fragment
 
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+    }
+
     public static TabFragment newInstance(String title)
     {
         TabFragment tabFragment = new TabFragment();

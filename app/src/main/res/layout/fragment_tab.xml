@@ -1,8 +1,8 @@
-<android.support.v7.widget.RecyclerView android:id="@id/id_stickynavlayout_innerscrollview"
+<com.zhy.stickynavlayout.AutoTopRecyclerView android:id="@id/id_stickynavlayout_innerscrollview"
                                         xmlns:android="http://schemas.android.com/apk/res/android"
                                         xmlns:tools="http://schemas.android.com/tools"
                                         android:layout_width="match_parent"
-                                        android:layout_height="500dp"
+                                        android:layout_height="match_parent"
                                         android:scrollbars="none">
 
-</android.support.v7.widget.RecyclerView>
+</com.zhy.stickynavlayout.AutoTopRecyclerView>

@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zhy.stickynavlayout.event.EventScroll;
-import com.zhy.stickynavlayout.view.SimpleViewPagerIndicator;
 import com.zhy.stickynavlayout.view.LiveStickyLayout;
+import com.zhy.stickynavlayout.view.SimpleViewPagerIndicator;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -82,6 +82,10 @@ public class DollFragment extends Fragment {
         mViewPager.setCurrentItem(0);
     }
 
+    public void setEnableScroll(boolean isScrollEnable){
+        stickLayout.setEnbaleScroll(isScrollEnable);
+    }
+
     private void initViews(View rootView) {
         stickLayout = (LiveStickyLayout) rootView.findViewById(R.id.stick_layout);
         mIndicator = (SimpleViewPagerIndicator) rootView.findViewById(R.id.id_stickynavlayout_indicator);
@@ -90,6 +94,7 @@ public class DollFragment extends Fragment {
         stickLayout.setScrollChangeListener(new LiveStickyLayout.ScrollChangeListener() {
             @Override
             public void enableScroll(boolean isEnable) {
+                stickLayout.setEnbaleScroll(true);
                 EventBus.getDefault().post(new EventScroll(isEnable));
             }
         });
@@ -101,7 +106,7 @@ public class DollFragment extends Fragment {
 //                mViewPager.setLayoutParams(params);
 //            }
 //        });
-		/*
+        /*
         RelativeLayout ll = (RelativeLayout) findViewById(R.id.id_stickynavlayout_topview);
 		TextView tv = new TextView(this);
 		tv.setText("我的动态添加的");
