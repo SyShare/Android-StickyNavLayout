@@ -4,44 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <RelativeLayout
+        android:id="@id/id_stickynavlayout_topview"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#4400ff00" >
 
-        <LinearLayout
-            android:id="@id/id_stickynavlayout_topview"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:id="@+id/top_bar_layout"
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorPrimary">
-
-            </FrameLayout>
-
-            <com.zhy.stickynavlayout.view.LiveVideoLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-
-                <ImageView
-                    android:id="@+id/img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="30dp"
-                    android:src="@drawable/ic_guide_operate_right"/>
-            </com.zhy.stickynavlayout.view.LiveVideoLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="145dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorPrimary">
-
-            </FrameLayout>
-        </LinearLayout>
-
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="软件介绍"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <com.zhy.stickynavlayout.view.SimpleViewPagerIndicator
         android:id="@id/id_stickynavlayout_indicator"
@@ -54,8 +30,7 @@
         android:id="@id/id_stickynavlayout_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
-         >
+        android:background="#44ff0000" >
     </android.support.v4.view.ViewPager>
 
 </com.zhy.stickynavlayout.view.LiveStickyLayout>

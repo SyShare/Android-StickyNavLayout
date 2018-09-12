@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion depends.compileSdkVersion
+    buildToolsVersion depends.buildToolsVersion
 
     defaultConfig {
         applicationId "com.zhy.stickynavlayout"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion depends.minSdkVersion
+        targetSdkVersion depends.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -20,11 +20,11 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25+'
-    compile 'com.zhy:base-adapter:2.0.0'
-    compile 'com.android.support:recyclerview-v7:25+'
-    compile 'com.android.support:design:25+'
-    compile 'org.greenrobot:eventbus:3.1.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation depends.appcompat_v7()
+    implementation depends.design()
+    implementation depends.rv_v7()
+    implementation 'com.zhy:base-adapter:2.0.0'
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }
